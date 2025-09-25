@@ -36,17 +36,24 @@ export const EmailDataSchema = z.object({
 
 export type EmailData = z.infer<typeof EmailDataSchema>;
 
-// Extracted Data Schema
-export const ExtractedDataSchema = z.object({
-  emailId: z.string(),
-  ruleName: z.string(),
-  extractedFields: z.record(z.any()),
-  confidence: z.number().min(0).max(100),
-  extractionMethod: z.string(),
-  timestamp: z.date()
-});
+// Extracted Data Schema (raw field data)
+export const ExtractedDataSchema = z.record(z.any());
 
 export type ExtractedData = z.infer<typeof ExtractedDataSchema>;
+
+// Processing Result Schema (contains extraction metadata)
+export const ProcessingResultSchema = z.object({
+  emailId: z.string(),
+  ruleName: z.string(),
+  extractedFields: ExtractedDataSchema,
+  confidence: z.number().min(0).max(100),
+  extractionMethod: z.string(),
+  processingTime: z.number().optional(),
+  timestamp: z.date(),
+  error: z.string().optional()
+});
+
+export type ProcessingResult = z.infer<typeof ProcessingResultSchema>;
 
 // Reminder Schema
 export const ReminderSchema = z.object({
@@ -95,7 +102,7 @@ export const ProcessingLogSchema = z.object({
   emailId: z.string(),
   ruleName: z.string(),
   status: z.enum(['success', 'error', 'skipped']),
-  extractedData: ExtractedDataSchema.optional(),
+  processingResult: ProcessingResultSchema.optional(),
   reminderCreated: z.boolean(),
   errorMessage: z.string().optional()
 });
