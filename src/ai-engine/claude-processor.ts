@@ -32,6 +32,29 @@ export class ClaudeProcessor {
   }
 
   private initializeDefaultTemplates(): void {
+    // Specific template for GGCC emails
+    this.promptTemplates.set('cobro_ggcc', {
+      system: `Eres un experto en análisis de emails de cobro GGCC (gastos comunes).
+Extrae información estructurada de emails de cobros de gastos comunes.
+SIEMPRE responde en formato JSON válido.`,
+      user: `Analiza este email de cobro GGCC y extrae:
+
+DATOS OBLIGATORIOS:
+- monto: cantidad en pesos chilenos (solo números, sin puntos ni comas)
+- vencimiento: fecha límite en formato YYYY-MM-DD
+- periodo: mes correspondiente (enero, febrero, etc.)
+- tipo: "gastos_comunes"
+- edificio: nombre del edificio/condominio si aparece
+
+Email:
+From: {{from}}
+Subject: {{subject}}
+Body: {{body}}
+
+Responde SOLO con JSON válido:`,
+      variables: ['from', 'subject', 'body']
+    });
+
     // Default template for gastos comunes (building fees)
     this.promptTemplates.set('gastos_comunes', {
       system: `Eres un experto en análisis de emails sobre gastos comunes de edificios en Chile.
@@ -236,6 +259,9 @@ Responde SOLO con JSON válido:`,
 
     // Mock responses based on rule type
     switch (rule.name) {
+      case 'cobro_ggcc':
+        return this.mockGastosComunesResponse(email);
+
       case 'gastos_comunes':
         return this.mockGastosComunesResponse(email);
 
@@ -375,6 +401,7 @@ Responde SOLO con JSON válido:`,
 
     // Define required fields by rule type
     const ruleRequirements: Record<string, string[]> = {
+      'cobro_ggcc': ['monto', 'vencimiento', 'periodo', 'tipo'],
       'gastos_comunes': ['monto', 'vencimiento', 'periodo', 'tipo'],
       'facturas_servicios': ['empresa', 'monto', 'vencimiento', 'tipo'],
       'entregas_amazon': ['tracking', 'fechaEntrega', 'proveedor', 'tipo'],
@@ -398,6 +425,7 @@ Responde SOLO con JSON válido:`,
     if (confidence >= 75) {
       // Bonus for complete extraction
       switch (rule.name) {
+        case 'cobro_ggcc':
         case 'gastos_comunes':
           if (data.monto && data.vencimiento && data.periodo) {
             confidence = Math.min(100, confidence + 10);

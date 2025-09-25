@@ -1,7 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { EmailRule, EmailRuleSchema } from './types/index.js';
-import { createLogger } from './utils/logger.js';
+import { EmailRule, EmailRuleSchema } from '../types/index.js';
+import { createLogger } from '../utils/logger.js';
 
 const logger = createLogger('ObsidianReader');
 
@@ -82,6 +82,7 @@ export class ObsidianReader {
 
     let currentRule: Partial<RuleSection> | null = null;
     let inPromptSection = false;
+    let inTemplateSection = false;
     let promptLines: string[] = [];
 
     for (let i = 0; i < lines.length; i++) {
@@ -108,6 +109,7 @@ export class ObsidianReader {
           }
         };
         inPromptSection = false;
+        inTemplateSection = false;
         promptLines = [];
         continue;
       }
@@ -133,7 +135,42 @@ export class ObsidianReader {
       // Detect prompt section start
       if (line === '**Prompt:**' || line === 'Prompt:') {
         inPromptSection = true;
+        inTemplateSection = false;
         continue;
+      }
+
+      // Detect reminder template section start
+      if (line === '**Reminder Template:**') {
+        inPromptSection = false;
+        inTemplateSection = true;
+        continue;
+      }
+
+      // Parse reminder template fields
+      if (inTemplateSection) {
+        if (line.startsWith('- Title:')) {
+          const title = this.extractQuotedValue(line);
+          if (title) currentRule.reminderTemplate!.titleTemplate = title;
+        } else if (line.startsWith('- List:')) {
+          const list = this.extractQuotedValue(line);
+          if (list) currentRule.reminderTemplate!.listName = list;
+        } else if (line.startsWith('- Priority:')) {
+          const priority = this.extractStringValue(line)?.toLowerCase();
+          if (priority === 'low' || priority === 'normal' || priority === 'high') {
+            currentRule.reminderTemplate!.priority = priority;
+          }
+        } else if (line.startsWith('- Days Before:')) {
+          const days = parseInt(this.extractStringValue(line) || '3', 10);
+          if (!isNaN(days)) currentRule.reminderTemplate!.daysBeforeReminder = days;
+        } else if (line.startsWith('- Time:')) {
+          const time = this.extractQuotedValue(line);
+          if (time) currentRule.reminderTemplate!.timeOfDay = time;
+        } else if (line.startsWith('---') || line.startsWith('### ')) {
+          inTemplateSection = false;
+          if (line.startsWith('### Rule:')) {
+            i--; // Reprocess this line
+          }
+        }
       }
 
       // Collect prompt content
@@ -218,6 +255,15 @@ export class ObsidianReader {
   private extractStringValue(line: string): string | undefined {
     const match = line.match(/:\s*(.+)$/);
     return match ? match[1].trim() : undefined;
+  }
+
+  private extractQuotedValue(line: string): string | undefined {
+    // Extract quoted value: - Title: "Some title"
+    const match = line.match(/:\s*"([^"]+)"/);
+    if (match) return match[1];
+
+    // Fallback to unquoted value
+    return this.extractStringValue(line);
   }
 
   private async validateRules(rules: RuleSection[]): Promise<EmailRule[]> {

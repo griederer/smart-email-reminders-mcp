@@ -115,7 +115,7 @@ export class AppleReminders {
     if (options.dueDate) {
       const dueDateString = this.formatDateForAppleScript(options.dueDate);
       script += `
-  set due date of newReminder to date "${dueDateString}"`;
+  set due date of newReminder to ${dueDateString}`;
     }
 
     // Add priority if provided
@@ -144,20 +144,25 @@ end tell`;
   }
 
   private formatDateForAppleScript(date: Date): string {
-    // Format date for AppleScript: "Monday, January 1, 2024 at 9:00:00 AM"
-    const options: Intl.DateTimeFormatOptions = {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: '2-digit',
-      second: '2-digit',
-      timeZone: this.config.timezone,
-      hour12: true
-    };
+    // Calculate days from today for AppleScript
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
 
-    return new Intl.DateTimeFormat('en-US', options).format(date);
+    const targetDate = new Date(date);
+    targetDate.setHours(0, 0, 0, 0);
+
+    const diffTime = targetDate.getTime() - today.getTime();
+    const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
+
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+
+    // Use current date arithmetic which is most reliable in AppleScript
+    if (diffDays === 0) {
+      return `(current date) + (${hours} * hours) + (${minutes} * minutes)`;
+    } else {
+      return `(current date) + (${diffDays} * days) + (${hours} * hours) + (${minutes} * minutes)`;
+    }
   }
 
   private getPriorityValue(priority: 'low' | 'normal' | 'high'): number {
@@ -302,6 +307,15 @@ end tell`;
           // Set time of day
           const [hours, minutes] = template.timeOfDay.split(':').map(Number);
           dueDate.setHours(hours, minutes, 0, 0);
+
+          // If the calculated reminder date is in the past, set it for tomorrow
+          const now = new Date();
+          if (dueDate.getTime() < now.getTime()) {
+            logger.warn(`Calculated reminder date ${dueDate.toISOString()} is in the past, setting for tomorrow`);
+            dueDate = new Date(now);
+            dueDate.setDate(dueDate.getDate() + 1); // Tomorrow
+            dueDate.setHours(hours, minutes, 0, 0);
+          }
         }
       }
 
