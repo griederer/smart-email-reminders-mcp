@@ -1,0 +1,8 @@
+{"level":"info","message":"ObsidianReader initialized with vault: /Users/gonzaloriederer/Documents/Obsidian/griederer","service":"ObsidianReader","timestamp":"2025-09-25T18:33:52.154Z"}
+{"level":"info","message":"Loading email rules from Obsidian...","service":"ObsidianReader","timestamp":"2025-09-25T18:33:52.156Z"}
+{"level":"debug","message":"Rule 'gastos_comunes' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T18:33:52.158Z"}
+{"level":"debug","message":"Rule 'facturas_servicios' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T18:33:52.158Z"}
+{"level":"debug","message":"Rule 'entregas_amazon' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T18:33:52.159Z"}
+{"level":"info","message":"Successfully loaded 3 valid rules","service":"ObsidianReader","timestamp":"2025-09-25T18:33:52.159Z"}
+{"level":"debug","message":"Using cached rules (no changes detected)","service":"ObsidianReader","timestamp":"2025-09-25T18:33:52.160Z"}
+{"level":"debug","message":"Using cached rules (no changes detected)","service":"ObsidianReader","timestamp":"2025-09-25T18:33:52.160Z"}
