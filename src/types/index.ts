@@ -8,6 +8,7 @@ export const EmailRuleSchema = z.object({
   fromContains: z.array(z.string()).optional(),
   fromDomains: z.array(z.string()).optional(),
   subjectContains: z.array(z.string()).optional(),
+  bodyContains: z.array(z.string()).optional(),
   subjectRegex: z.string().optional(),
   prompt: z.string(),
   reminderTemplate: z.object({
@@ -37,16 +38,12 @@ export type EmailData = z.infer<typeof EmailDataSchema>;
 
 // Extracted Data Schema
 export const ExtractedDataSchema = z.object({
-  monto: z.number().optional(),
-  vencimiento: z.date().optional(),
-  periodo: z.string().optional(),
-  empresa: z.string().optional(),
-  concepto: z.string().optional(),
-  numeroFactura: z.string().optional(),
-  tracking: z.string().optional(),
-  direccion: z.string().optional(),
-  producto: z.string().optional(),
-  urgencia: z.enum(['baja', 'normal', 'alta']).default('normal')
+  emailId: z.string(),
+  ruleName: z.string(),
+  extractedFields: z.record(z.any()),
+  confidence: z.number().min(0).max(100),
+  extractionMethod: z.string(),
+  timestamp: z.date()
 });
 
 export type ExtractedData = z.infer<typeof ExtractedDataSchema>;
