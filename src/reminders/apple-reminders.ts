@@ -286,7 +286,8 @@ end tell`;
       daysBeforeReminder: number;
       timeOfDay: string;
     },
-    sourceEmailId: string
+    sourceEmailId: string,
+    emailDate?: Date
   ): Promise<ReminderCreationResult> {
     try {
       // Substitute template variables
@@ -295,7 +296,19 @@ end tell`;
       // Calculate due date
       let dueDate: Date | undefined;
 
-      if (extractedData.vencimiento || extractedData.fechaEntrega) {
+      // Special case: negative daysBeforeReminder means days AFTER email date
+      if (template.daysBeforeReminder < 0 && emailDate) {
+        dueDate = new Date(emailDate);
+        dueDate.setDate(dueDate.getDate() + Math.abs(template.daysBeforeReminder));
+
+        // Set time of day
+        const [hours, minutes] = template.timeOfDay.split(':').map(Number);
+        dueDate.setHours(hours, minutes, 0, 0);
+
+        logger.info(`Using email date + ${Math.abs(template.daysBeforeReminder)} days: ${dueDate.toISOString()}`);
+      }
+      // Normal case: use vencimiento/fechaEntrega - daysBeforeReminder
+      else if (extractedData.vencimiento || extractedData.fechaEntrega) {
         const targetDateString = extractedData.vencimiento || extractedData.fechaEntrega;
         const targetDate = new Date(targetDateString);
 

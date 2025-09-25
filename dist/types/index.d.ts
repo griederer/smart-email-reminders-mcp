@@ -6,6 +6,7 @@ export declare const EmailRuleSchema: z.ZodObject<{
     fromContains: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     fromDomains: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     subjectContains: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    bodyContains: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     subjectRegex: z.ZodOptional<z.ZodString>;
     prompt: z.ZodString;
     reminderTemplate: z.ZodObject<{
@@ -42,6 +43,7 @@ export declare const EmailRuleSchema: z.ZodObject<{
     fromContains?: string[] | undefined;
     fromDomains?: string[] | undefined;
     subjectContains?: string[] | undefined;
+    bodyContains?: string[] | undefined;
     subjectRegex?: string | undefined;
 }, {
     name: string;
@@ -58,6 +60,7 @@ export declare const EmailRuleSchema: z.ZodObject<{
     fromContains?: string[] | undefined;
     fromDomains?: string[] | undefined;
     subjectContains?: string[] | undefined;
+    bodyContains?: string[] | undefined;
     subjectRegex?: string | undefined;
 }>;
 export type EmailRule = z.infer<typeof EmailRuleSchema>;
@@ -90,41 +93,37 @@ export declare const EmailDataSchema: z.ZodObject<{
     matchedRules?: string[] | undefined;
 }>;
 export type EmailData = z.infer<typeof EmailDataSchema>;
-export declare const ExtractedDataSchema: z.ZodObject<{
-    monto: z.ZodOptional<z.ZodNumber>;
-    vencimiento: z.ZodOptional<z.ZodDate>;
-    periodo: z.ZodOptional<z.ZodString>;
-    empresa: z.ZodOptional<z.ZodString>;
-    concepto: z.ZodOptional<z.ZodString>;
-    numeroFactura: z.ZodOptional<z.ZodString>;
-    tracking: z.ZodOptional<z.ZodString>;
-    direccion: z.ZodOptional<z.ZodString>;
-    producto: z.ZodOptional<z.ZodString>;
-    urgencia: z.ZodDefault<z.ZodEnum<["baja", "normal", "alta"]>>;
-}, "strip", z.ZodTypeAny, {
-    urgencia: "normal" | "baja" | "alta";
-    monto?: number | undefined;
-    vencimiento?: Date | undefined;
-    periodo?: string | undefined;
-    empresa?: string | undefined;
-    concepto?: string | undefined;
-    numeroFactura?: string | undefined;
-    tracking?: string | undefined;
-    direccion?: string | undefined;
-    producto?: string | undefined;
-}, {
-    monto?: number | undefined;
-    vencimiento?: Date | undefined;
-    periodo?: string | undefined;
-    empresa?: string | undefined;
-    concepto?: string | undefined;
-    numeroFactura?: string | undefined;
-    tracking?: string | undefined;
-    direccion?: string | undefined;
-    producto?: string | undefined;
-    urgencia?: "normal" | "baja" | "alta" | undefined;
-}>;
+export declare const ExtractedDataSchema: z.ZodRecord<z.ZodString, z.ZodAny>;
 export type ExtractedData = z.infer<typeof ExtractedDataSchema>;
+export declare const ProcessingResultSchema: z.ZodObject<{
+    emailId: z.ZodString;
+    ruleName: z.ZodString;
+    extractedFields: z.ZodRecord<z.ZodString, z.ZodAny>;
+    confidence: z.ZodNumber;
+    extractionMethod: z.ZodString;
+    processingTime: z.ZodOptional<z.ZodNumber>;
+    timestamp: z.ZodDate;
+    error: z.ZodOptional<z.ZodString>;
+}, "strip", z.ZodTypeAny, {
+    emailId: string;
+    ruleName: string;
+    extractedFields: Record<string, any>;
+    confidence: number;
+    extractionMethod: string;
+    timestamp: Date;
+    processingTime?: number | undefined;
+    error?: string | undefined;
+}, {
+    emailId: string;
+    ruleName: string;
+    extractedFields: Record<string, any>;
+    confidence: number;
+    extractionMethod: string;
+    timestamp: Date;
+    processingTime?: number | undefined;
+    error?: string | undefined;
+}>;
+export type ProcessingResult = z.infer<typeof ProcessingResultSchema>;
 export declare const ReminderSchema: z.ZodObject<{
     title: z.ZodString;
     dueDate: z.ZodDate;
@@ -257,78 +256,68 @@ export declare const ProcessingLogSchema: z.ZodObject<{
     emailId: z.ZodString;
     ruleName: z.ZodString;
     status: z.ZodEnum<["success", "error", "skipped"]>;
-    extractedData: z.ZodOptional<z.ZodObject<{
-        monto: z.ZodOptional<z.ZodNumber>;
-        vencimiento: z.ZodOptional<z.ZodDate>;
-        periodo: z.ZodOptional<z.ZodString>;
-        empresa: z.ZodOptional<z.ZodString>;
-        concepto: z.ZodOptional<z.ZodString>;
-        numeroFactura: z.ZodOptional<z.ZodString>;
-        tracking: z.ZodOptional<z.ZodString>;
-        direccion: z.ZodOptional<z.ZodString>;
-        producto: z.ZodOptional<z.ZodString>;
-        urgencia: z.ZodDefault<z.ZodEnum<["baja", "normal", "alta"]>>;
+    processingResult: z.ZodOptional<z.ZodObject<{
+        emailId: z.ZodString;
+        ruleName: z.ZodString;
+        extractedFields: z.ZodRecord<z.ZodString, z.ZodAny>;
+        confidence: z.ZodNumber;
+        extractionMethod: z.ZodString;
+        processingTime: z.ZodOptional<z.ZodNumber>;
+        timestamp: z.ZodDate;
+        error: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
-        urgencia: "normal" | "baja" | "alta";
-        monto?: number | undefined;
-        vencimiento?: Date | undefined;
-        periodo?: string | undefined;
-        empresa?: string | undefined;
-        concepto?: string | undefined;
-        numeroFactura?: string | undefined;
-        tracking?: string | undefined;
-        direccion?: string | undefined;
-        producto?: string | undefined;
+        emailId: string;
+        ruleName: string;
+        extractedFields: Record<string, any>;
+        confidence: number;
+        extractionMethod: string;
+        timestamp: Date;
+        processingTime?: number | undefined;
+        error?: string | undefined;
     }, {
-        monto?: number | undefined;
-        vencimiento?: Date | undefined;
-        periodo?: string | undefined;
-        empresa?: string | undefined;
-        concepto?: string | undefined;
-        numeroFactura?: string | undefined;
-        tracking?: string | undefined;
-        direccion?: string | undefined;
-        producto?: string | undefined;
-        urgencia?: "normal" | "baja" | "alta" | undefined;
+        emailId: string;
+        ruleName: string;
+        extractedFields: Record<string, any>;
+        confidence: number;
+        extractionMethod: string;
+        timestamp: Date;
+        processingTime?: number | undefined;
+        error?: string | undefined;
     }>>;
     reminderCreated: z.ZodBoolean;
     errorMessage: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    status: "success" | "error" | "skipped";
-    timestamp: Date;
+    status: "error" | "success" | "skipped";
     emailId: string;
     ruleName: string;
+    timestamp: Date;
     reminderCreated: boolean;
-    extractedData?: {
-        urgencia: "normal" | "baja" | "alta";
-        monto?: number | undefined;
-        vencimiento?: Date | undefined;
-        periodo?: string | undefined;
-        empresa?: string | undefined;
-        concepto?: string | undefined;
-        numeroFactura?: string | undefined;
-        tracking?: string | undefined;
-        direccion?: string | undefined;
-        producto?: string | undefined;
+    processingResult?: {
+        emailId: string;
+        ruleName: string;
+        extractedFields: Record<string, any>;
+        confidence: number;
+        extractionMethod: string;
+        timestamp: Date;
+        processingTime?: number | undefined;
+        error?: string | undefined;
     } | undefined;
     errorMessage?: string | undefined;
 }, {
-    status: "success" | "error" | "skipped";
-    timestamp: Date;
+    status: "error" | "success" | "skipped";
     emailId: string;
     ruleName: string;
+    timestamp: Date;
     reminderCreated: boolean;
-    extractedData?: {
-        monto?: number | undefined;
-        vencimiento?: Date | undefined;
-        periodo?: string | undefined;
-        empresa?: string | undefined;
-        concepto?: string | undefined;
-        numeroFactura?: string | undefined;
-        tracking?: string | undefined;
-        direccion?: string | undefined;
-        producto?: string | undefined;
-        urgencia?: "normal" | "baja" | "alta" | undefined;
+    processingResult?: {
+        emailId: string;
+        ruleName: string;
+        extractedFields: Record<string, any>;
+        confidence: number;
+        extractionMethod: string;
+        timestamp: Date;
+        processingTime?: number | undefined;
+        error?: string | undefined;
     } | undefined;
     errorMessage?: string | undefined;
 }>;

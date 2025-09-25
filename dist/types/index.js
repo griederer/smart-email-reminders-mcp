@@ -7,6 +7,7 @@ export const EmailRuleSchema = z.object({
     fromContains: z.array(z.string()).optional(),
     fromDomains: z.array(z.string()).optional(),
     subjectContains: z.array(z.string()).optional(),
+    bodyContains: z.array(z.string()).optional(),
     subjectRegex: z.string().optional(),
     prompt: z.string(),
     reminderTemplate: z.object({
@@ -28,18 +29,18 @@ export const EmailDataSchema = z.object({
     processed: z.boolean().default(false),
     matchedRules: z.array(z.string()).default([])
 });
-// Extracted Data Schema
-export const ExtractedDataSchema = z.object({
-    monto: z.number().optional(),
-    vencimiento: z.date().optional(),
-    periodo: z.string().optional(),
-    empresa: z.string().optional(),
-    concepto: z.string().optional(),
-    numeroFactura: z.string().optional(),
-    tracking: z.string().optional(),
-    direccion: z.string().optional(),
-    producto: z.string().optional(),
-    urgencia: z.enum(['baja', 'normal', 'alta']).default('normal')
+// Extracted Data Schema (raw field data)
+export const ExtractedDataSchema = z.record(z.any());
+// Processing Result Schema (contains extraction metadata)
+export const ProcessingResultSchema = z.object({
+    emailId: z.string(),
+    ruleName: z.string(),
+    extractedFields: ExtractedDataSchema,
+    confidence: z.number().min(0).max(100),
+    extractionMethod: z.string(),
+    processingTime: z.number().optional(),
+    timestamp: z.date(),
+    error: z.string().optional()
 });
 // Reminder Schema
 export const ReminderSchema = z.object({
@@ -82,7 +83,7 @@ export const ProcessingLogSchema = z.object({
     emailId: z.string(),
     ruleName: z.string(),
     status: z.enum(['success', 'error', 'skipped']),
-    extractedData: ExtractedDataSchema.optional(),
+    processingResult: ProcessingResultSchema.optional(),
     reminderCreated: z.boolean(),
     errorMessage: z.string().optional()
 });

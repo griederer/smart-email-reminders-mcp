@@ -6,3 +6,286 @@
 {"level":"info","message":"Successfully loaded 3 valid rules","service":"ObsidianReader","timestamp":"2025-09-25T18:33:52.159Z"}
 {"level":"debug","message":"Using cached rules (no changes detected)","service":"ObsidianReader","timestamp":"2025-09-25T18:33:52.160Z"}
 {"level":"debug","message":"Using cached rules (no changes detected)","service":"ObsidianReader","timestamp":"2025-09-25T18:33:52.160Z"}
+{"level":"info","message":"ObsidianReader initialized with vault: /Users/gonzaloriederer/Documents/Obsidian/griederer","service":"ObsidianReader","timestamp":"2025-09-25T20:33:02.931Z"}
+{"level":"info","message":"Loading email rules from Obsidian...","service":"ObsidianReader","timestamp":"2025-09-25T20:33:02.934Z"}
+{"level":"debug","message":"Rule 'gastos_comunes' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T20:33:02.936Z"}
+{"level":"debug","message":"Filtering 1 emails against 4 rules","service":"EmailFilter","timestamp":"2025-09-25T20:33:02.937Z"}
+{"level":"info","message":"Processing email test-ggcc-1758832382931 with rule cobro_ggcc","service":"claude-processor","timestamp":"2025-09-25T20:33:02.937Z"}
+{"level":"debug","message":"Rule 'cobro_ggcc' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T20:33:02.936Z"}
+{"level":"debug","message":"Rule 'facturas_servicios' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T20:33:02.936Z"}
+{"level":"debug","message":"Rule 'entregas_amazon' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T20:33:02.936Z"}
+{"level":"info","message":"Successfully loaded 4 valid rules","service":"ObsidianReader","timestamp":"2025-09-25T20:33:02.936Z"}
+{"level":"debug","message":"Email subject \"Cobro GGCC - Gastos Comunes Octubre 2024\" doesn't contain any of: gasto común, cuota mensual, expensas","service":"EmailFilter","timestamp":"2025-09-25T20:33:02.937Z"}
+{"level":"debug","message":"Email \"Cobro GGCC - Gastos Comunes Octubre 2024\" matches rule \"cobro_ggcc\"","service":"EmailFilter","timestamp":"2025-09-25T20:33:02.937Z"}
+{"level":"debug","message":"Email domain \"edificio.cl\" doesn't match any of: enel.cl, aguasandinas.cl, movistar.cl","service":"EmailFilter","timestamp":"2025-09-25T20:33:02.937Z"}
+{"level":"debug","message":"Email from \"ggcc@edificio.cl\" doesn't contain any of: amazon, shipment","service":"EmailFilter","timestamp":"2025-09-25T20:33:02.937Z"}
+{"level":"debug","message":"Email \"Cobro GGCC - Gastos Comunes Octubre 2024\" matched 1 rules: cobro_ggcc","service":"EmailFilter","timestamp":"2025-09-25T20:33:02.937Z"}
+{"level":"debug","message":"Claude prompt for cobro_ggcc:","service":"claude-processor","system":"Eres un asistente que extrae información útil de emails.\nIdentifica fechas importantes, montos y inf...","timestamp":"2025-09-25T20:33:03.261Z","user":"Analiza este email y extrae información relevante:\n- fechaImportante: cualquier fecha importante en ..."}
+{"level":"info","message":"Creating reminder: \"-\"","service":"apple-reminders","timestamp":"2025-09-25T20:33:03.262Z"}
+{"level":"info","message":"Successfully processed email test-ggcc-1758832382931 in 324ms","service":"claude-processor","timestamp":"2025-09-25T20:33:03.261Z"}
+{"level":"debug","message":"Executing AppleScript:","service":"apple-reminders","timestamp":"2025-09-25T20:33:03.262Z"}
+{"cmd":"osascript -e 'tell application \"Reminders\"\n  set targetList to list \"Facturas\"\n  if targetList is missing value then\n    set targetList to make new list with properties {name:\"Facturas\"}\n  end if\n\n  set newReminder to make new reminder at end of reminders of targetList\n  set name of newReminder to \"-\"\n  set body of newReminder to \"Fuente: Email test-ggcc-1758832382931\"\n  set priority of newReminder to 5\n\n  return id of newReminder\nend tell'","code":1,"killed":false,"level":"error","message":"Failed to create reminder after 214ms: Command failed: osascript -e 'tell application \"Reminders\"\n  set targetList to list \"Facturas\"\n  if targetList is missing value then\n    set targetList to make new list with properties {name:\"Facturas\"}\n  end if\n\n  set newReminder to make new reminder at end of reminders of targetList\n  set name of newReminder to \"-\"\n  set body of newReminder to \"Fuente: Email test-ggcc-1758832382931\"\n  set priority of newReminder to 5\n\n  return id of newReminder\nend tell'\n49:64: execution error: Reminders ha detectado un error: No puede obtenerse list \"Facturas\". (-1728)\n","service":"apple-reminders","signal":null,"stack":"Error: Command failed: osascript -e 'tell application \"Reminders\"\n  set targetList to list \"Facturas\"\n  if targetList is missing value then\n    set targetList to make new list with properties {name:\"Facturas\"}\n  end if\n\n  set newReminder to make new reminder at end of reminders of targetList\n  set name of newReminder to \"-\"\n  set body of newReminder to \"Fuente: Email test-ggcc-1758832382931\"\n  set priority of newReminder to 5\n\n  return id of newReminder\nend tell'\n49:64: execution error: Reminders ha detectado un error: No puede obtenerse list \"Facturas\". (-1728)\n\n    at genericNodeError (node:internal/errors:983:15)\n    at wrappedFn (node:internal/errors:537:14)\n    at ChildProcess.exithandler (node:child_process:414:12)\n    at ChildProcess.emit (node:events:518:28)\n    at maybeClose (node:internal/child_process:1101:16)\n    at ChildProcess._handle.onexit (node:internal/child_process:304:5)","stderr":"49:64: execution error: Reminders ha detectado un error: No puede obtenerse list \"Facturas\". (-1728)\n","stdout":"","timestamp":"2025-09-25T20:33:03.476Z"}
+{"level":"info","message":"ObsidianReader initialized with vault: /Users/gonzaloriederer/Documents/Obsidian/griederer","service":"ObsidianReader","timestamp":"2025-09-25T20:35:02.953Z"}
+{"level":"info","message":"Loading email rules from Obsidian...","service":"ObsidianReader","timestamp":"2025-09-25T20:35:02.956Z"}
+{"level":"debug","message":"Rule 'gastos_comunes' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T20:35:02.957Z"}
+{"level":"debug","message":"Filtering 1 emails against 4 rules","service":"EmailFilter","timestamp":"2025-09-25T20:35:02.958Z"}
+{"level":"info","message":"Processing email test-ggcc-1758832502953 with rule cobro_ggcc","service":"claude-processor","timestamp":"2025-09-25T20:35:02.959Z"}
+{"level":"debug","message":"Rule 'cobro_ggcc' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T20:35:02.957Z"}
+{"level":"debug","message":"Rule 'facturas_servicios' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T20:35:02.958Z"}
+{"level":"debug","message":"Rule 'entregas_amazon' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T20:35:02.958Z"}
+{"level":"info","message":"Successfully loaded 4 valid rules","service":"ObsidianReader","timestamp":"2025-09-25T20:35:02.958Z"}
+{"level":"debug","message":"Email subject \"Cobro GGCC - Gastos Comunes Octubre 2024\" doesn't contain any of: gasto común, cuota mensual, expensas","service":"EmailFilter","timestamp":"2025-09-25T20:35:02.958Z"}
+{"level":"debug","message":"Email \"Cobro GGCC - Gastos Comunes Octubre 2024\" matches rule \"cobro_ggcc\"","service":"EmailFilter","timestamp":"2025-09-25T20:35:02.958Z"}
+{"level":"debug","message":"Email domain \"edificio.cl\" doesn't match any of: enel.cl, aguasandinas.cl, movistar.cl","service":"EmailFilter","timestamp":"2025-09-25T20:35:02.959Z"}
+{"level":"debug","message":"Email from \"ggcc@edificio.cl\" doesn't contain any of: amazon, shipment","service":"EmailFilter","timestamp":"2025-09-25T20:35:02.959Z"}
+{"level":"debug","message":"Email \"Cobro GGCC - Gastos Comunes Octubre 2024\" matched 1 rules: cobro_ggcc","service":"EmailFilter","timestamp":"2025-09-25T20:35:02.959Z"}
+{"level":"debug","message":"Claude prompt for cobro_ggcc:","service":"claude-processor","system":"Eres un experto en análisis de emails de cobro GGCC (gastos comunes).\nExtrae información estructurad...","timestamp":"2025-09-25T20:35:03.260Z","user":"Analiza este email de cobro GGCC y extrae:\n\nDATOS OBLIGATORIOS:\n- monto: cantidad en pesos chilenos ..."}
+{"level":"info","message":"Creating reminder: \"-\"","service":"apple-reminders","timestamp":"2025-09-25T20:35:03.261Z"}
+{"level":"info","message":"Successfully processed email test-ggcc-1758832502953 in 301ms","service":"claude-processor","timestamp":"2025-09-25T20:35:03.260Z"}
+{"level":"debug","message":"Executing AppleScript:","service":"apple-reminders","timestamp":"2025-09-25T20:35:03.261Z"}
+{"level":"info","message":"Successfully created reminder in 2226ms, ID: x-apple-reminder://35570503-7699-4CF2-AD4C-7672A823C3A0","service":"apple-reminders","timestamp":"2025-09-25T20:35:05.486Z"}
+{"level":"info","message":"ObsidianReader initialized with vault: /Users/gonzaloriederer/Documents/Obsidian/griederer","service":"ObsidianReader","timestamp":"2025-09-25T20:35:47.098Z"}
+{"level":"info","message":"Loading email rules from Obsidian...","service":"ObsidianReader","timestamp":"2025-09-25T20:35:47.101Z"}
+{"level":"debug","message":"Rule 'gastos_comunes' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T20:35:47.102Z"}
+{"level":"debug","message":"Filtering 1 emails against 4 rules","service":"EmailFilter","timestamp":"2025-09-25T20:35:47.103Z"}
+{"level":"info","message":"Processing email test-ggcc-1758832547098 with rule cobro_ggcc","service":"claude-processor","timestamp":"2025-09-25T20:35:47.104Z"}
+{"level":"debug","message":"Rule 'cobro_ggcc' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T20:35:47.103Z"}
+{"level":"debug","message":"Rule 'facturas_servicios' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T20:35:47.103Z"}
+{"level":"debug","message":"Rule 'entregas_amazon' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T20:35:47.103Z"}
+{"level":"info","message":"Successfully loaded 4 valid rules","service":"ObsidianReader","timestamp":"2025-09-25T20:35:47.103Z"}
+{"level":"debug","message":"Email subject \"Cobro GGCC - Gastos Comunes Octubre 2024\" doesn't contain any of: gasto común, cuota mensual, expensas","service":"EmailFilter","timestamp":"2025-09-25T20:35:47.103Z"}
+{"level":"debug","message":"Email \"Cobro GGCC - Gastos Comunes Octubre 2024\" matches rule \"cobro_ggcc\"","service":"EmailFilter","timestamp":"2025-09-25T20:35:47.104Z"}
+{"level":"debug","message":"Email domain \"edificio.cl\" doesn't match any of: enel.cl, aguasandinas.cl, movistar.cl","service":"EmailFilter","timestamp":"2025-09-25T20:35:47.104Z"}
+{"level":"debug","message":"Email from \"ggcc@edificio.cl\" doesn't contain any of: amazon, shipment","service":"EmailFilter","timestamp":"2025-09-25T20:35:47.104Z"}
+{"level":"debug","message":"Email \"Cobro GGCC - Gastos Comunes Octubre 2024\" matched 1 rules: cobro_ggcc","service":"EmailFilter","timestamp":"2025-09-25T20:35:47.104Z"}
+{"level":"debug","message":"Claude prompt for cobro_ggcc:","service":"claude-processor","system":"Eres un experto en análisis de emails de cobro GGCC (gastos comunes).\nExtrae información estructurad...","timestamp":"2025-09-25T20:35:47.305Z","user":"Analiza este email de cobro GGCC y extrae:\n\nDATOS OBLIGATORIOS:\n- monto: cantidad en pesos chilenos ..."}
+{"level":"info","message":"Creating reminder: \"- 47500\"","service":"apple-reminders","timestamp":"2025-09-25T20:35:47.307Z"}
+{"level":"info","message":"Successfully processed email test-ggcc-1758832547098 in 202ms","service":"claude-processor","timestamp":"2025-09-25T20:35:47.306Z"}
+{"level":"debug","message":"Executing AppleScript:","service":"apple-reminders","timestamp":"2025-09-25T20:35:47.327Z"}
+{"cmd":"osascript -e 'tell application \"Reminders\"\n  set targetList to list \"Facturas\"\n  if targetList is missing value then\n    set targetList to make new list with properties {name:\"Facturas\"}\n  end if\n\n  set newReminder to make new reminder at end of reminders of targetList\n  set name of newReminder to \"- 47500\"\n  set body of newReminder to \"Fuente: Email test-ggcc-1758832547098\\nMonto: $47500\"\n  set due date of newReminder to date \"Monday, November 11, 2024 at 9:00:00 AM\"\n  set priority of newReminder to 5\n\n  return id of newReminder\nend tell'","code":1,"killed":false,"level":"error","message":"Failed to create reminder after 61ms: Command failed: osascript -e 'tell application \"Reminders\"\n  set targetList to list \"Facturas\"\n  if targetList is missing value then\n    set targetList to make new list with properties {name:\"Facturas\"}\n  end if\n\n  set newReminder to make new reminder at end of reminders of targetList\n  set name of newReminder to \"- 47500\"\n  set body of newReminder to \"Fuente: Email test-ggcc-1758832547098\\nMonto: $47500\"\n  set due date of newReminder to date \"Monday, November 11, 2024 at 9:00:00 AM\"\n  set priority of newReminder to 5\n\n  return id of newReminder\nend tell'\n412:458: syntax error: Fecha y hora no válidas date Monday, November 11, 2024 at 9:00:00 AM. (-30720)\n","service":"apple-reminders","signal":null,"stack":"Error: Command failed: osascript -e 'tell application \"Reminders\"\n  set targetList to list \"Facturas\"\n  if targetList is missing value then\n    set targetList to make new list with properties {name:\"Facturas\"}\n  end if\n\n  set newReminder to make new reminder at end of reminders of targetList\n  set name of newReminder to \"- 47500\"\n  set body of newReminder to \"Fuente: Email test-ggcc-1758832547098\\nMonto: $47500\"\n  set due date of newReminder to date \"Monday, November 11, 2024 at 9:00:00 AM\"\n  set priority of newReminder to 5\n\n  return id of newReminder\nend tell'\n412:458: syntax error: Fecha y hora no válidas date Monday, November 11, 2024 at 9:00:00 AM. (-30720)\n\n    at genericNodeError (node:internal/errors:983:15)\n    at wrappedFn (node:internal/errors:537:14)\n    at ChildProcess.exithandler (node:child_process:414:12)\n    at ChildProcess.emit (node:events:518:28)\n    at maybeClose (node:internal/child_process:1101:16)\n    at ChildProcess._handle.onexit (node:internal/child_process:304:5)","stderr":"412:458: syntax error: Fecha y hora no válidas date Monday, November 11, 2024 at 9:00:00 AM. (-30720)\n","stdout":"","timestamp":"2025-09-25T20:35:47.368Z"}
+{"level":"info","message":"ObsidianReader initialized with vault: /Users/gonzaloriederer/Documents/Obsidian/griederer","service":"ObsidianReader","timestamp":"2025-09-25T20:36:25.495Z"}
+{"level":"info","message":"Loading email rules from Obsidian...","service":"ObsidianReader","timestamp":"2025-09-25T20:36:25.497Z"}
+{"level":"debug","message":"Rule 'gastos_comunes' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T20:36:25.499Z"}
+{"level":"debug","message":"Filtering 1 emails against 4 rules","service":"EmailFilter","timestamp":"2025-09-25T20:36:25.500Z"}
+{"level":"info","message":"Processing email test-ggcc-1758832585494 with rule cobro_ggcc","service":"claude-processor","timestamp":"2025-09-25T20:36:25.501Z"}
+{"level":"debug","message":"Rule 'cobro_ggcc' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T20:36:25.499Z"}
+{"level":"debug","message":"Rule 'facturas_servicios' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T20:36:25.500Z"}
+{"level":"debug","message":"Rule 'entregas_amazon' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T20:36:25.500Z"}
+{"level":"info","message":"Successfully loaded 4 valid rules","service":"ObsidianReader","timestamp":"2025-09-25T20:36:25.500Z"}
+{"level":"debug","message":"Email subject \"Cobro GGCC - Gastos Comunes Octubre 2024\" doesn't contain any of: gasto común, cuota mensual, expensas","service":"EmailFilter","timestamp":"2025-09-25T20:36:25.500Z"}
+{"level":"debug","message":"Email \"Cobro GGCC - Gastos Comunes Octubre 2024\" matches rule \"cobro_ggcc\"","service":"EmailFilter","timestamp":"2025-09-25T20:36:25.500Z"}
+{"level":"debug","message":"Email domain \"edificio.cl\" doesn't match any of: enel.cl, aguasandinas.cl, movistar.cl","service":"EmailFilter","timestamp":"2025-09-25T20:36:25.500Z"}
+{"level":"debug","message":"Email from \"ggcc@edificio.cl\" doesn't contain any of: amazon, shipment","service":"EmailFilter","timestamp":"2025-09-25T20:36:25.500Z"}
+{"level":"debug","message":"Email \"Cobro GGCC - Gastos Comunes Octubre 2024\" matched 1 rules: cobro_ggcc","service":"EmailFilter","timestamp":"2025-09-25T20:36:25.500Z"}
+{"level":"debug","message":"Claude prompt for cobro_ggcc:","service":"claude-processor","system":"Eres un experto en análisis de emails de cobro GGCC (gastos comunes).\nExtrae información estructurad...","timestamp":"2025-09-25T20:36:25.716Z","user":"Analiza este email de cobro GGCC y extrae:\n\nDATOS OBLIGATORIOS:\n- monto: cantidad en pesos chilenos ..."}
+{"level":"info","message":"Creating reminder: \"- 47500\"","service":"apple-reminders","timestamp":"2025-09-25T20:36:25.718Z"}
+{"level":"info","message":"Successfully processed email test-ggcc-1758832585494 in 216ms","service":"claude-processor","timestamp":"2025-09-25T20:36:25.717Z"}
+{"level":"debug","message":"Executing AppleScript:","service":"apple-reminders","timestamp":"2025-09-25T20:36:25.718Z"}
+{"level":"info","message":"Successfully created reminder in 2653ms, ID: x-apple-reminder://C757B421-8652-4965-83D3-D4089FC067AC","service":"apple-reminders","timestamp":"2025-09-25T20:36:28.371Z"}
+{"level":"info","message":"ObsidianReader initialized with vault: /Users/gonzaloriederer/Documents/Obsidian/griederer","service":"ObsidianReader","timestamp":"2025-09-25T20:52:19.197Z"}
+{"level":"info","message":"Loading email rules from Obsidian...","service":"ObsidianReader","timestamp":"2025-09-25T20:52:19.200Z"}
+{"level":"debug","message":"Rule 'gastos_comunes' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T20:52:19.202Z"}
+{"level":"debug","message":"Filtering 1 emails against 4 rules","service":"EmailFilter","timestamp":"2025-09-25T20:52:19.203Z"}
+{"level":"info","message":"Processing email test-ggcc-1758833539197 with rule cobro_ggcc","service":"claude-processor","timestamp":"2025-09-25T20:52:19.204Z"}
+{"level":"debug","message":"Rule 'cobro_ggcc' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T20:52:19.202Z"}
+{"level":"debug","message":"Rule 'facturas_servicios' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T20:52:19.202Z"}
+{"level":"debug","message":"Rule 'entregas_amazon' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T20:52:19.203Z"}
+{"level":"info","message":"Successfully loaded 4 valid rules","service":"ObsidianReader","timestamp":"2025-09-25T20:52:19.203Z"}
+{"level":"debug","message":"Email subject \"Cobro GGCC - Gastos Comunes Octubre 2024\" doesn't contain any of: gasto común, cuota mensual, expensas","service":"EmailFilter","timestamp":"2025-09-25T20:52:19.203Z"}
+{"level":"debug","message":"Email \"Cobro GGCC - Gastos Comunes Octubre 2024\" matches rule \"cobro_ggcc\"","service":"EmailFilter","timestamp":"2025-09-25T20:52:19.203Z"}
+{"level":"debug","message":"Email domain \"edificio.cl\" doesn't match any of: enel.cl, aguasandinas.cl, movistar.cl","service":"EmailFilter","timestamp":"2025-09-25T20:52:19.203Z"}
+{"level":"debug","message":"Email from \"ggcc@edificio.cl\" doesn't contain any of: amazon, shipment","service":"EmailFilter","timestamp":"2025-09-25T20:52:19.203Z"}
+{"level":"debug","message":"Email \"Cobro GGCC - Gastos Comunes Octubre 2024\" matched 1 rules: cobro_ggcc","service":"EmailFilter","timestamp":"2025-09-25T20:52:19.203Z"}
+{"level":"debug","message":"Claude prompt for cobro_ggcc:","service":"claude-processor","system":"Eres un experto en análisis de emails de cobro GGCC (gastos comunes).\nExtrae información estructurad...","timestamp":"2025-09-25T20:52:19.688Z","user":"Analiza este email de cobro GGCC y extrae:\n\nDATOS OBLIGATORIOS:\n- monto: cantidad en pesos chilenos ..."}
+{"level":"info","message":"Creating reminder: \"💰 GGCC: Pagar 47500 pesos - octubre\"","service":"apple-reminders","timestamp":"2025-09-25T20:52:19.691Z"}
+{"level":"info","message":"Successfully processed email test-ggcc-1758833539197 in 486ms","service":"claude-processor","timestamp":"2025-09-25T20:52:19.690Z"}
+{"level":"debug","message":"Executing AppleScript:","service":"apple-reminders","timestamp":"2025-09-25T20:52:19.692Z"}
+{"level":"info","message":"Successfully created reminder in 2914ms, ID: x-apple-reminder://0F447521-8421-40FA-B165-01D5A6844D91","service":"apple-reminders","timestamp":"2025-09-25T20:52:22.605Z"}
+{"level":"info","message":"ObsidianReader initialized with vault: /Users/gonzaloriederer/Documents/Obsidian/griederer","service":"ObsidianReader","timestamp":"2025-09-25T20:54:39.261Z"}
+{"level":"info","message":"Loading email rules from Obsidian...","service":"ObsidianReader","timestamp":"2025-09-25T20:54:39.264Z"}
+{"level":"debug","message":"Rule 'gastos_comunes' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T20:54:39.266Z"}
+{"level":"debug","message":"Filtering 1 emails against 4 rules","service":"EmailFilter","timestamp":"2025-09-25T20:54:39.266Z"}
+{"level":"info","message":"Processing email test-ggcc-1758833679261 with rule cobro_ggcc","service":"claude-processor","timestamp":"2025-09-25T20:54:39.267Z"}
+{"level":"debug","message":"Rule 'cobro_ggcc' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T20:54:39.266Z"}
+{"level":"debug","message":"Rule 'facturas_servicios' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T20:54:39.266Z"}
+{"level":"debug","message":"Rule 'entregas_amazon' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T20:54:39.266Z"}
+{"level":"info","message":"Successfully loaded 4 valid rules","service":"ObsidianReader","timestamp":"2025-09-25T20:54:39.266Z"}
+{"level":"debug","message":"Email subject \"Cobro GGCC - Gastos Comunes Octubre 2024\" doesn't contain any of: gasto común, cuota mensual, expensas","service":"EmailFilter","timestamp":"2025-09-25T20:54:39.267Z"}
+{"level":"debug","message":"Email \"Cobro GGCC - Gastos Comunes Octubre 2024\" matches rule \"cobro_ggcc\"","service":"EmailFilter","timestamp":"2025-09-25T20:54:39.267Z"}
+{"level":"debug","message":"Email domain \"edificio.cl\" doesn't match any of: enel.cl, aguasandinas.cl, movistar.cl","service":"EmailFilter","timestamp":"2025-09-25T20:54:39.267Z"}
+{"level":"debug","message":"Email from \"ggcc@edificio.cl\" doesn't contain any of: amazon, shipment","service":"EmailFilter","timestamp":"2025-09-25T20:54:39.267Z"}
+{"level":"debug","message":"Email \"Cobro GGCC - Gastos Comunes Octubre 2024\" matched 1 rules: cobro_ggcc","service":"EmailFilter","timestamp":"2025-09-25T20:54:39.267Z"}
+{"level":"debug","message":"Claude prompt for cobro_ggcc:","service":"claude-processor","system":"Eres un experto en análisis de emails de cobro GGCC (gastos comunes).\nExtrae información estructurad...","timestamp":"2025-09-25T20:54:39.546Z","user":"Analiza este email de cobro GGCC y extrae:\n\nDATOS OBLIGATORIOS:\n- monto: cantidad en pesos chilenos ..."}
+{"level":"warn","message":"Calculated reminder date 2024-11-11T12:00:00.000Z is in the past, setting for tomorrow","service":"apple-reminders","timestamp":"2025-09-25T20:54:39.550Z"}
+{"level":"info","message":"Successfully processed email test-ggcc-1758833679261 in 281ms","service":"claude-processor","timestamp":"2025-09-25T20:54:39.548Z"}
+{"level":"info","message":"Creating reminder: \"💰 GGCC: Pagar 47500 pesos - octubre\"","service":"apple-reminders","timestamp":"2025-09-25T20:54:39.550Z"}
+{"level":"debug","message":"Executing AppleScript:","service":"apple-reminders","timestamp":"2025-09-25T20:54:39.551Z"}
+{"level":"info","message":"Successfully created reminder in 2889ms, ID: x-apple-reminder://E58D10C7-C052-4E5F-A5B9-29FC242D402E","service":"apple-reminders","timestamp":"2025-09-25T20:54:42.439Z"}
+{"level":"info","message":"ObsidianReader initialized with vault: /Users/gonzaloriederer/Documents/Obsidian/griederer","service":"ObsidianReader","timestamp":"2025-09-25T20:58:08.245Z"}
+{"level":"info","message":"Loading email rules from Obsidian...","service":"ObsidianReader","timestamp":"2025-09-25T20:58:08.248Z"}
+{"level":"debug","message":"Rule 'gastos_comunes' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T20:58:08.249Z"}
+{"level":"debug","message":"Filtering 1 emails against 4 rules","service":"EmailFilter","timestamp":"2025-09-25T20:58:08.250Z"}
+{"level":"info","message":"Processing email test-ggcc-1758833888245 with rule cobro_ggcc","service":"claude-processor","timestamp":"2025-09-25T20:58:08.251Z"}
+{"level":"debug","message":"Rule 'cobro_ggcc' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T20:58:08.250Z"}
+{"level":"debug","message":"Rule 'facturas_servicios' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T20:58:08.250Z"}
+{"level":"debug","message":"Rule 'entregas_amazon' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T20:58:08.250Z"}
+{"level":"info","message":"Successfully loaded 4 valid rules","service":"ObsidianReader","timestamp":"2025-09-25T20:58:08.250Z"}
+{"level":"debug","message":"Email subject \"Cobro GGCC - Gastos Comunes Octubre 2024\" doesn't contain any of: gasto común, cuota mensual, expensas","service":"EmailFilter","timestamp":"2025-09-25T20:58:08.251Z"}
+{"level":"debug","message":"Email \"Cobro GGCC - Gastos Comunes Octubre 2024\" matches rule \"cobro_ggcc\"","service":"EmailFilter","timestamp":"2025-09-25T20:58:08.251Z"}
+{"level":"debug","message":"Email domain \"edificio.cl\" doesn't match any of: enel.cl, aguasandinas.cl, movistar.cl","service":"EmailFilter","timestamp":"2025-09-25T20:58:08.251Z"}
+{"level":"debug","message":"Email from \"ggcc@edificio.cl\" doesn't contain any of: amazon, shipment","service":"EmailFilter","timestamp":"2025-09-25T20:58:08.251Z"}
+{"level":"debug","message":"Email \"Cobro GGCC - Gastos Comunes Octubre 2024\" matched 1 rules: cobro_ggcc","service":"EmailFilter","timestamp":"2025-09-25T20:58:08.251Z"}
+{"level":"debug","message":"Claude prompt for cobro_ggcc:","service":"claude-processor","system":"Eres un experto en análisis de emails de cobro GGCC (gastos comunes).\nExtrae información estructurad...","timestamp":"2025-09-25T20:58:08.723Z","user":"Analiza este email de cobro GGCC y extrae:\n\nDATOS OBLIGATORIOS:\n- monto: cantidad en pesos chilenos ..."}
+{"level":"warn","message":"Calculated reminder date 2024-11-11T12:00:00.000Z is in the past, setting for tomorrow","service":"apple-reminders","timestamp":"2025-09-25T20:58:08.726Z"}
+{"level":"info","message":"Successfully processed email test-ggcc-1758833888245 in 474ms","service":"claude-processor","timestamp":"2025-09-25T20:58:08.725Z"}
+{"level":"info","message":"Creating reminder: \"💰 GGCC: Pagar 65669 pesos - octubre\"","service":"apple-reminders","timestamp":"2025-09-25T20:58:08.727Z"}
+{"level":"debug","message":"Executing AppleScript:","service":"apple-reminders","timestamp":"2025-09-25T20:58:08.748Z"}
+{"cmd":"osascript -e 'tell application \"Reminders\"\n  set targetList to list \"Facturas\"\n  if targetList is missing value then\n    set targetList to make new list with properties {name:\"Facturas\"}\n  end if\n\n  set newReminder to make new reminder at end of reminders of targetList\n  set name of newReminder to \"💰 GGCC: Pagar 65669 pesos - octubre\"\n  set body of newReminder to \"Fuente: Email test-ggcc-1758833888245\\nMonto: $65669\"\n  set due date of newReminder to date \"Friday, September 26, 2025 at 9:00:00 AM\"\n  set priority of newReminder to 9\n\n  return id of newReminder\nend tell'","code":1,"killed":false,"level":"error","message":"Failed to create reminder after 65ms: Command failed: osascript -e 'tell application \"Reminders\"\n  set targetList to list \"Facturas\"\n  if targetList is missing value then\n    set targetList to make new list with properties {name:\"Facturas\"}\n  end if\n\n  set newReminder to make new reminder at end of reminders of targetList\n  set name of newReminder to \"💰 GGCC: Pagar 65669 pesos - octubre\"\n  set body of newReminder to \"Fuente: Email test-ggcc-1758833888245\\nMonto: $65669\"\n  set due date of newReminder to date \"Friday, September 26, 2025 at 9:00:00 AM\"\n  set priority of newReminder to 9\n\n  return id of newReminder\nend tell'\n441:488: syntax error: Fecha y hora no válidas date Friday, September 26, 2025 at 9:00:00 AM. (-30720)\n","service":"apple-reminders","signal":null,"stack":"Error: Command failed: osascript -e 'tell application \"Reminders\"\n  set targetList to list \"Facturas\"\n  if targetList is missing value then\n    set targetList to make new list with properties {name:\"Facturas\"}\n  end if\n\n  set newReminder to make new reminder at end of reminders of targetList\n  set name of newReminder to \"💰 GGCC: Pagar 65669 pesos - octubre\"\n  set body of newReminder to \"Fuente: Email test-ggcc-1758833888245\\nMonto: $65669\"\n  set due date of newReminder to date \"Friday, September 26, 2025 at 9:00:00 AM\"\n  set priority of newReminder to 9\n\n  return id of newReminder\nend tell'\n441:488: syntax error: Fecha y hora no válidas date Friday, September 26, 2025 at 9:00:00 AM. (-30720)\n\n    at genericNodeError (node:internal/errors:983:15)\n    at wrappedFn (node:internal/errors:537:14)\n    at ChildProcess.exithandler (node:child_process:414:12)\n    at ChildProcess.emit (node:events:518:28)\n    at maybeClose (node:internal/child_process:1101:16)\n    at ChildProcess._handle.onexit (node:internal/child_process:304:5)","stderr":"441:488: syntax error: Fecha y hora no válidas date Friday, September 26, 2025 at 9:00:00 AM. (-30720)\n","stdout":"","timestamp":"2025-09-25T20:58:08.792Z"}
+{"level":"info","message":"ObsidianReader initialized with vault: /Users/gonzaloriederer/Documents/Obsidian/griederer","service":"ObsidianReader","timestamp":"2025-09-25T20:58:35.459Z"}
+{"level":"info","message":"Loading email rules from Obsidian...","service":"ObsidianReader","timestamp":"2025-09-25T20:58:35.462Z"}
+{"level":"debug","message":"Rule 'gastos_comunes' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T20:58:35.464Z"}
+{"level":"debug","message":"Filtering 1 emails against 4 rules","service":"EmailFilter","timestamp":"2025-09-25T20:58:35.464Z"}
+{"level":"info","message":"Processing email test-ggcc-1758833915459 with rule cobro_ggcc","service":"claude-processor","timestamp":"2025-09-25T20:58:35.465Z"}
+{"level":"debug","message":"Rule 'cobro_ggcc' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T20:58:35.464Z"}
+{"level":"debug","message":"Rule 'facturas_servicios' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T20:58:35.464Z"}
+{"level":"debug","message":"Rule 'entregas_amazon' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T20:58:35.464Z"}
+{"level":"info","message":"Successfully loaded 4 valid rules","service":"ObsidianReader","timestamp":"2025-09-25T20:58:35.464Z"}
+{"level":"debug","message":"Email subject \"Cobro GGCC - Gastos Comunes Octubre 2024\" doesn't contain any of: gasto común, cuota mensual, expensas","service":"EmailFilter","timestamp":"2025-09-25T20:58:35.465Z"}
+{"level":"debug","message":"Email \"Cobro GGCC - Gastos Comunes Octubre 2024\" matches rule \"cobro_ggcc\"","service":"EmailFilter","timestamp":"2025-09-25T20:58:35.465Z"}
+{"level":"debug","message":"Email domain \"edificio.cl\" doesn't match any of: enel.cl, aguasandinas.cl, movistar.cl","service":"EmailFilter","timestamp":"2025-09-25T20:58:35.465Z"}
+{"level":"debug","message":"Email from \"ggcc@edificio.cl\" doesn't contain any of: amazon, shipment","service":"EmailFilter","timestamp":"2025-09-25T20:58:35.465Z"}
+{"level":"debug","message":"Email \"Cobro GGCC - Gastos Comunes Octubre 2024\" matched 1 rules: cobro_ggcc","service":"EmailFilter","timestamp":"2025-09-25T20:58:35.465Z"}
+{"level":"debug","message":"Claude prompt for cobro_ggcc:","service":"claude-processor","system":"Eres un experto en análisis de emails de cobro GGCC (gastos comunes).\nExtrae información estructurad...","timestamp":"2025-09-25T20:58:35.740Z","user":"Analiza este email de cobro GGCC y extrae:\n\nDATOS OBLIGATORIOS:\n- monto: cantidad en pesos chilenos ..."}
+{"level":"warn","message":"Calculated reminder date 2024-11-11T12:00:00.000Z is in the past, setting for tomorrow","service":"apple-reminders","timestamp":"2025-09-25T20:58:35.743Z"}
+{"level":"info","message":"Successfully processed email test-ggcc-1758833915459 in 277ms","service":"claude-processor","timestamp":"2025-09-25T20:58:35.742Z"}
+{"level":"info","message":"Creating reminder: \"💰 GGCC: Pagar 65669 pesos - octubre\"","service":"apple-reminders","timestamp":"2025-09-25T20:58:35.744Z"}
+{"level":"debug","message":"Executing AppleScript:","service":"apple-reminders","timestamp":"2025-09-25T20:58:35.744Z"}
+{"level":"info","message":"Successfully created reminder in 2883ms, ID: x-apple-reminder://968E9AAC-F1DC-4DC2-A2C3-67F82F818861","service":"apple-reminders","timestamp":"2025-09-25T20:58:38.627Z"}
+{"level":"info","message":"ObsidianReader initialized with vault: /Users/gonzaloriederer/Documents/Obsidian/griederer","service":"ObsidianReader","timestamp":"2025-09-25T21:02:26.553Z"}
+{"level":"info","message":"Loading email rules from Obsidian...","service":"ObsidianReader","timestamp":"2025-09-25T21:02:26.556Z"}
+{"level":"debug","message":"Rule 'gastos_comunes' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T21:02:26.558Z"}
+{"level":"debug","message":"Filtering 1 emails against 4 rules","service":"EmailFilter","timestamp":"2025-09-25T21:02:26.559Z"}
+{"level":"info","message":"Processing email test-ggcc-1758834146553 with rule cobro_ggcc","service":"claude-processor","timestamp":"2025-09-25T21:02:26.560Z"}
+{"level":"debug","message":"Rule 'cobro_ggcc' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T21:02:26.558Z"}
+{"level":"debug","message":"Rule 'facturas_servicios' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T21:02:26.558Z"}
+{"level":"debug","message":"Rule 'entregas_amazon' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T21:02:26.559Z"}
+{"level":"info","message":"Successfully loaded 4 valid rules","service":"ObsidianReader","timestamp":"2025-09-25T21:02:26.559Z"}
+{"level":"debug","message":"Email subject \"Cobro GGCC - Gastos Comunes Octubre 2024\" doesn't contain any of: gasto común, cuota mensual, expensas","service":"EmailFilter","timestamp":"2025-09-25T21:02:26.559Z"}
+{"level":"debug","message":"Email \"Cobro GGCC - Gastos Comunes Octubre 2024\" matches rule \"cobro_ggcc\"","service":"EmailFilter","timestamp":"2025-09-25T21:02:26.559Z"}
+{"level":"debug","message":"Email domain \"edificio.cl\" doesn't match any of: enel.cl, aguasandinas.cl, movistar.cl","service":"EmailFilter","timestamp":"2025-09-25T21:02:26.559Z"}
+{"level":"debug","message":"Email from \"ggcc@edificio.cl\" doesn't contain any of: amazon, shipment","service":"EmailFilter","timestamp":"2025-09-25T21:02:26.559Z"}
+{"level":"debug","message":"Email \"Cobro GGCC - Gastos Comunes Octubre 2024\" matched 1 rules: cobro_ggcc","service":"EmailFilter","timestamp":"2025-09-25T21:02:26.559Z"}
+{"level":"debug","message":"Claude prompt for cobro_ggcc:","service":"claude-processor","system":"Eres un experto en análisis de emails de cobro GGCC (gastos comunes).\nExtrae información estructurad...","timestamp":"2025-09-25T21:02:27.031Z","user":"Analiza este email de cobro GGCC y extrae:\n\nDATOS OBLIGATORIOS:\n- monto: cantidad en pesos chilenos ..."}
+{"level":"warn","message":"Calculated reminder date 2024-11-11T12:00:00.000Z is in the past, setting for tomorrow","service":"apple-reminders","timestamp":"2025-09-25T21:02:27.034Z"}
+{"level":"info","message":"Successfully processed email test-ggcc-1758834146553 in 472ms","service":"claude-processor","timestamp":"2025-09-25T21:02:27.033Z"}
+{"level":"info","message":"Creating reminder: \"💰 GGCC: Pagar 65669 pesos - octubre\"","service":"apple-reminders","timestamp":"2025-09-25T21:02:27.035Z"}
+{"level":"debug","message":"Executing AppleScript:","service":"apple-reminders","timestamp":"2025-09-25T21:02:27.035Z"}
+{"level":"info","message":"Successfully created reminder in 3094ms, ID: x-apple-reminder://1D1DBED9-C1A0-44D2-81F6-AB15EB251762","service":"apple-reminders","timestamp":"2025-09-25T21:02:30.129Z"}
+{"level":"info","message":"iCloud IMAP connection established","service":"iCloudClient","timestamp":"2025-09-25T21:27:38.961Z"}
+{"level":"info","message":"iCloud IMAP client initialized successfully","service":"iCloudClient","timestamp":"2025-09-25T21:27:38.967Z"}
+{"level":"debug","message":"Fetching iCloud emails from INBOX, limit: 10","service":"iCloudClient","timestamp":"2025-09-25T21:27:38.968Z"}
+{"level":"debug","message":"Opened folder INBOX, 75795 total messages","service":"iCloudClient","timestamp":"2025-09-25T21:27:39.325Z"}
+{"level":"debug","message":"Found 75795 messages, processing last 10","service":"iCloudClient","timestamp":"2025-09-25T21:27:40.540Z"}
+{"level":"debug","message":"Parsed 9 messages successfully","service":"iCloudClient","timestamp":"2025-09-25T21:27:41.594Z"}
+{"level":"info","message":"Successfully fetched 9 iCloud emails","service":"iCloudClient","timestamp":"2025-09-25T21:27:41.594Z"}
+{"level":"info","message":"iCloud IMAP connection established","service":"iCloudClient","timestamp":"2025-09-25T21:28:21.030Z"}
+{"level":"info","message":"iCloud IMAP client initialized successfully","service":"iCloudClient","timestamp":"2025-09-25T21:28:21.036Z"}
+{"level":"debug","message":"Fetching iCloud emails from INBOX, limit: 10","service":"iCloudClient","timestamp":"2025-09-25T21:28:21.037Z"}
+{"level":"debug","message":"Opened folder INBOX, 75796 total messages","service":"iCloudClient","timestamp":"2025-09-25T21:28:21.402Z"}
+{"level":"debug","message":"Found 75796 messages, processing last 10","service":"iCloudClient","timestamp":"2025-09-25T21:28:22.584Z"}
+{"level":"debug","message":"Parsed 9 messages successfully","service":"iCloudClient","timestamp":"2025-09-25T21:28:23.441Z"}
+{"level":"info","message":"Successfully fetched 9 iCloud emails","service":"iCloudClient","timestamp":"2025-09-25T21:28:23.441Z"}
+{"level":"info","message":"iCloud IMAP connection established","service":"iCloudClient","timestamp":"2025-09-25T21:29:56.593Z"}
+{"level":"info","message":"iCloud IMAP client initialized successfully","service":"iCloudClient","timestamp":"2025-09-25T21:29:56.600Z"}
+{"level":"debug","message":"Fetching iCloud emails from INBOX, limit: 20","service":"iCloudClient","timestamp":"2025-09-25T21:29:56.601Z"}
+{"level":"debug","message":"Opened folder INBOX, 75796 total messages","service":"iCloudClient","timestamp":"2025-09-25T21:29:56.960Z"}
+{"level":"debug","message":"Found 75796 messages, processing last 20","service":"iCloudClient","timestamp":"2025-09-25T21:29:58.198Z"}
+{"level":"debug","message":"Parsed 18 messages successfully","service":"iCloudClient","timestamp":"2025-09-25T21:29:59.492Z"}
+{"level":"info","message":"ObsidianReader initialized with vault: /Users/gonzaloriederer/Documents/Obsidian/griederer","service":"ObsidianReader","timestamp":"2025-09-25T21:29:59.493Z"}
+{"level":"info","message":"Successfully fetched 18 iCloud emails","service":"iCloudClient","timestamp":"2025-09-25T21:29:59.493Z"}
+{"level":"info","message":"Loading email rules from Obsidian...","service":"ObsidianReader","timestamp":"2025-09-25T21:29:59.493Z"}
+{"level":"debug","message":"Rule 'gastos_comunes' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T21:29:59.495Z"}
+{"level":"debug","message":"Filtering 1 emails against 4 rules","service":"EmailFilter","timestamp":"2025-09-25T21:29:59.496Z"}
+{"level":"debug","message":"Rule 'cobro_ggcc' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T21:29:59.495Z"}
+{"level":"debug","message":"Rule 'facturas_servicios' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T21:29:59.496Z"}
+{"level":"debug","message":"Rule 'entregas_amazon' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T21:29:59.496Z"}
+{"level":"info","message":"Successfully loaded 4 valid rules","service":"ObsidianReader","timestamp":"2025-09-25T21:29:59.496Z"}
+{"level":"debug","message":"Email from \"notificaciones@email.comunidadfeliz.com\" doesn't contain any of: gastos, edificio, administracion","service":"EmailFilter","timestamp":"2025-09-25T21:29:59.496Z"}
+{"level":"debug","message":"Email from \"notificaciones@email.comunidadfeliz.com\" doesn't contain any of: ggcc, gastos, cobro, administracion","service":"EmailFilter","timestamp":"2025-09-25T21:29:59.496Z"}
+{"level":"debug","message":"Email from \"notificaciones@email.comunidadfeliz.com\" doesn't contain any of: amazon, shipment","service":"EmailFilter","timestamp":"2025-09-25T21:29:59.496Z"}
+{"level":"info","message":"iCloud IMAP connection established","service":"iCloudClient","timestamp":"2025-09-25T21:32:21.287Z"}
+{"level":"info","message":"iCloud IMAP client initialized successfully","service":"iCloudClient","timestamp":"2025-09-25T21:32:21.292Z"}
+{"level":"debug","message":"Fetching iCloud emails from INBOX, limit: 20","service":"iCloudClient","timestamp":"2025-09-25T21:32:21.293Z"}
+{"level":"debug","message":"Opened folder INBOX, 75796 total messages","service":"iCloudClient","timestamp":"2025-09-25T21:32:21.651Z"}
+{"level":"debug","message":"Found 75796 messages, processing last 20","service":"iCloudClient","timestamp":"2025-09-25T21:32:22.914Z"}
+{"level":"debug","message":"Parsed 19 messages successfully","service":"iCloudClient","timestamp":"2025-09-25T21:32:24.660Z"}
+{"level":"info","message":"ObsidianReader initialized with vault: /Users/gonzaloriederer/Documents/Obsidian/griederer","service":"ObsidianReader","timestamp":"2025-09-25T21:32:24.660Z"}
+{"level":"info","message":"Successfully fetched 19 iCloud emails","service":"iCloudClient","timestamp":"2025-09-25T21:32:24.660Z"}
+{"level":"info","message":"Loading email rules from Obsidian...","service":"ObsidianReader","timestamp":"2025-09-25T21:32:24.661Z"}
+{"level":"debug","message":"Rule 'gastos_comunes' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T21:32:24.662Z"}
+{"level":"debug","message":"Filtering 1 emails against 4 rules","service":"EmailFilter","timestamp":"2025-09-25T21:32:24.663Z"}
+{"level":"info","message":"Processing email icloud_undefined with rule cobro_ggcc","service":"claude-processor","timestamp":"2025-09-25T21:32:24.663Z"}
+{"level":"debug","message":"Rule 'cobro_ggcc' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T21:32:24.662Z"}
+{"level":"debug","message":"Rule 'facturas_servicios' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T21:32:24.662Z"}
+{"level":"debug","message":"Rule 'entregas_amazon' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T21:32:24.663Z"}
+{"level":"info","message":"Successfully loaded 4 valid rules","service":"ObsidianReader","timestamp":"2025-09-25T21:32:24.663Z"}
+{"level":"debug","message":"Email from \"notificaciones@email.comunidadfeliz.com\" doesn't contain any of: gastos, edificio, administracion","service":"EmailFilter","timestamp":"2025-09-25T21:32:24.663Z"}
+{"level":"debug","message":"Email \"[Edificio Catedral] Gastos comunes vencidos - 709\" matches rule \"cobro_ggcc\"","service":"EmailFilter","timestamp":"2025-09-25T21:32:24.663Z"}
+{"level":"debug","message":"Email from \"notificaciones@email.comunidadfeliz.com\" doesn't contain any of: amazon, shipment","service":"EmailFilter","timestamp":"2025-09-25T21:32:24.663Z"}
+{"level":"debug","message":"Email \"[Edificio Catedral] Gastos comunes vencidos - 709\" matched 1 rules: cobro_ggcc","service":"EmailFilter","timestamp":"2025-09-25T21:32:24.663Z"}
+{"level":"debug","message":"Claude prompt for cobro_ggcc:","service":"claude-processor","system":"Eres un experto en análisis de emails de cobro GGCC (gastos comunes).\nExtrae información estructurad...","timestamp":"2025-09-25T21:32:24.940Z","user":"Analiza este email de cobro GGCC y extrae:\n\nDATOS OBLIGATORIOS:\n- monto: cantidad en pesos chilenos ..."}
+{"level":"info","message":"Creating reminder: \"💰 GGCC: Pagar 47619 pesos - junio\"","service":"apple-reminders","timestamp":"2025-09-25T21:32:24.943Z"}
+{"level":"info","message":"Successfully processed email icloud_undefined in 278ms","service":"claude-processor","timestamp":"2025-09-25T21:32:24.942Z"}
+{"level":"debug","message":"Executing AppleScript:","service":"apple-reminders","timestamp":"2025-09-25T21:32:24.943Z"}
+{"level":"info","message":"Successfully created reminder in 2717ms, ID: x-apple-reminder://4FDA4F36-0385-4EC8-8526-EEE08B1AB372","service":"apple-reminders","timestamp":"2025-09-25T21:32:27.660Z"}
+{"level":"info","message":"iCloud IMAP connection established","service":"iCloudClient","timestamp":"2025-09-25T21:37:46.758Z"}
+{"level":"info","message":"iCloud IMAP client initialized successfully","service":"iCloudClient","timestamp":"2025-09-25T21:37:46.761Z"}
+{"level":"debug","message":"Fetching iCloud emails from INBOX, limit: 30","service":"iCloudClient","timestamp":"2025-09-25T21:37:46.761Z"}
+{"level":"debug","message":"Opened folder INBOX, 75796 total messages","service":"iCloudClient","timestamp":"2025-09-25T21:37:47.201Z"}
+{"level":"debug","message":"Found 75796 messages, processing last 30","service":"iCloudClient","timestamp":"2025-09-25T21:37:48.585Z"}
+{"level":"debug","message":"Parsed 27 messages successfully","service":"iCloudClient","timestamp":"2025-09-25T21:37:50.305Z"}
+{"level":"info","message":"ObsidianReader initialized with vault: /Users/gonzaloriederer/Documents/Obsidian/griederer","service":"ObsidianReader","timestamp":"2025-09-25T21:37:50.305Z"}
+{"level":"info","message":"Successfully fetched 27 iCloud emails","service":"iCloudClient","timestamp":"2025-09-25T21:37:50.305Z"}
+{"level":"info","message":"Loading email rules from Obsidian...","service":"ObsidianReader","timestamp":"2025-09-25T21:37:50.306Z"}
+{"level":"debug","message":"Rule 'gastos_comunes' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T21:37:50.307Z"}
+{"level":"debug","message":"Filtering 1 emails against 4 rules","service":"EmailFilter","timestamp":"2025-09-25T21:37:50.308Z"}
+{"level":"info","message":"Processing email icloud_undefined with rule cobro_ggcc","service":"claude-processor","timestamp":"2025-09-25T21:37:50.308Z"}
+{"level":"debug","message":"Rule 'cobro_ggcc' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T21:37:50.307Z"}
+{"level":"debug","message":"Rule 'facturas_servicios' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T21:37:50.308Z"}
+{"level":"debug","message":"Rule 'entregas_amazon' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T21:37:50.308Z"}
+{"level":"info","message":"Successfully loaded 4 valid rules","service":"ObsidianReader","timestamp":"2025-09-25T21:37:50.308Z"}
+{"level":"debug","message":"Email from \"\"Alex Villalobos\" <alexvr1953@gmail.com>\" doesn't contain any of: gastos, edificio, administracion","service":"EmailFilter","timestamp":"2025-09-25T21:37:50.308Z"}
+{"level":"debug","message":"Email \"Cobro GGCC\" matches rule \"cobro_ggcc\"","service":"EmailFilter","timestamp":"2025-09-25T21:37:50.308Z"}
+{"level":"debug","message":"Email from \"\"Alex Villalobos\" <alexvr1953@gmail.com>\" doesn't contain any of: amazon, shipment","service":"EmailFilter","timestamp":"2025-09-25T21:37:50.308Z"}
+{"level":"debug","message":"Email \"Cobro GGCC\" matched 1 rules: cobro_ggcc","service":"EmailFilter","timestamp":"2025-09-25T21:37:50.308Z"}
+{"level":"debug","message":"Claude prompt for cobro_ggcc:","service":"claude-processor","system":"Eres un experto en análisis de emails de cobro GGCC (gastos comunes).\nExtrae información estructurad...","timestamp":"2025-09-25T21:37:50.522Z","user":"Analiza este email de cobro GGCC y extrae:\n\nDATOS OBLIGATORIOS:\n- monto: cantidad en pesos chilenos ..."}
+{"level":"info","message":"Creating reminder: \"💰 GGCC: Pagar pesos -\"","service":"apple-reminders","timestamp":"2025-09-25T21:37:50.525Z"}
+{"level":"info","message":"Successfully processed email icloud_undefined in 216ms","service":"claude-processor","timestamp":"2025-09-25T21:37:50.524Z"}
+{"level":"debug","message":"Executing AppleScript:","service":"apple-reminders","timestamp":"2025-09-25T21:37:50.525Z"}
+{"level":"info","message":"Successfully created reminder in 2733ms, ID: x-apple-reminder://233CE0B9-7B85-4FEE-A01A-0D93893A53B6","service":"apple-reminders","timestamp":"2025-09-25T21:37:53.257Z"}
+{"level":"info","message":"iCloud IMAP connection established","service":"iCloudClient","timestamp":"2025-09-25T21:44:02.518Z"}
+{"level":"info","message":"iCloud IMAP client initialized successfully","service":"iCloudClient","timestamp":"2025-09-25T21:44:02.523Z"}
+{"level":"debug","message":"Fetching iCloud emails from INBOX, limit: 30","service":"iCloudClient","timestamp":"2025-09-25T21:44:02.524Z"}
+{"level":"debug","message":"Opened folder INBOX, 75797 total messages","service":"iCloudClient","timestamp":"2025-09-25T21:44:02.976Z"}
+{"level":"debug","message":"Found 75797 messages, processing last 30","service":"iCloudClient","timestamp":"2025-09-25T21:44:04.740Z"}
+{"level":"debug","message":"Parsed 28 messages successfully","service":"iCloudClient","timestamp":"2025-09-25T21:44:06.242Z"}
+{"level":"info","message":"ObsidianReader initialized with vault: /Users/gonzaloriederer/Documents/Obsidian/griederer","service":"ObsidianReader","timestamp":"2025-09-25T21:44:06.242Z"}
+{"level":"info","message":"Successfully fetched 28 iCloud emails","service":"iCloudClient","timestamp":"2025-09-25T21:44:06.242Z"}
+{"level":"info","message":"Loading email rules from Obsidian...","service":"ObsidianReader","timestamp":"2025-09-25T21:44:06.243Z"}
+{"level":"debug","message":"Rule 'gastos_comunes' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T21:44:06.244Z"}
+{"level":"debug","message":"Filtering 1 emails against 4 rules","service":"EmailFilter","timestamp":"2025-09-25T21:44:06.244Z"}
+{"level":"info","message":"Processing email icloud_undefined with rule cobro_ggcc","service":"claude-processor","timestamp":"2025-09-25T21:44:06.245Z"}
+{"level":"debug","message":"Rule 'cobro_ggcc' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T21:44:06.244Z"}
+{"level":"debug","message":"Rule 'facturas_servicios' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T21:44:06.244Z"}
+{"level":"debug","message":"Rule 'entregas_amazon' validated successfully","service":"ObsidianReader","timestamp":"2025-09-25T21:44:06.244Z"}
+{"level":"info","message":"Successfully loaded 4 valid rules","service":"ObsidianReader","timestamp":"2025-09-25T21:44:06.244Z"}
+{"level":"debug","message":"Email from \"\"Alex Villalobos\" <alexvr1953@gmail.com>\" doesn't contain any of: gastos, edificio, administracion","service":"EmailFilter","timestamp":"2025-09-25T21:44:06.244Z"}
+{"level":"debug","message":"Email \"Cobro GGCC\" matches rule \"cobro_ggcc\"","service":"EmailFilter","timestamp":"2025-09-25T21:44:06.244Z"}
+{"level":"debug","message":"Email from \"\"Alex Villalobos\" <alexvr1953@gmail.com>\" doesn't contain any of: amazon, shipment","service":"EmailFilter","timestamp":"2025-09-25T21:44:06.244Z"}
+{"level":"debug","message":"Email \"Cobro GGCC\" matched 1 rules: cobro_ggcc","service":"EmailFilter","timestamp":"2025-09-25T21:44:06.244Z"}
+{"level":"debug","message":"Claude prompt for cobro_ggcc:","service":"claude-processor","system":"Eres un experto en análisis de emails de cobro GGCC (gastos comunes).\nExtrae información estructurad...","timestamp":"2025-09-25T21:44:06.548Z","user":"Analiza este email de cobro GGCC y extrae:\n\nDATOS OBLIGATORIOS:\n- monto: cantidad en pesos chilenos ..."}
+{"level":"info","message":"Using email date + 2 days: 2025-09-27T12:00:00.000Z","service":"apple-reminders","timestamp":"2025-09-25T21:44:06.549Z"}
+{"level":"info","message":"Successfully processed email icloud_undefined in 304ms","service":"claude-processor","timestamp":"2025-09-25T21:44:06.549Z"}
+{"level":"info","message":"Creating reminder: \"Pagar gasto común 8Q\"","service":"apple-reminders","timestamp":"2025-09-25T21:44:06.550Z"}
+{"level":"debug","message":"Executing AppleScript:","service":"apple-reminders","timestamp":"2025-09-25T21:44:06.550Z"}
+{"level":"info","message":"Successfully created reminder in 3225ms, ID: x-apple-reminder://68F35D65-7850-4B47-BAC2-3AA59257ED71","service":"apple-reminders","timestamp":"2025-09-25T21:44:09.775Z"}
